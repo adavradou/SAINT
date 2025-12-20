@@ -9,12 +9,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 import numpy as np
-import scipy.misc as misc
 import pickle
 import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
-from skimage.measure import compare_psnr
+from skimage.metrics import peak_signal_noise_ratio
 from scipy.ndimage import zoom
 class timer():
     def __init__(self):
@@ -159,7 +158,7 @@ def calc_psnr(sr, hr, scale):
     hr = hr[128:384,128:384]
     output = []
     for i in range(len(sr)):
-        output.append(np.around(compare_psnr(sr[i], hr),2))
+        output.append(np.around(peak_signal_noise_ratio(hr, sr[i], data_range=1.0), 2))
     return output
 
 def make_optimizer(args, my_model):

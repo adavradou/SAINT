@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import scipy.misc
 
 def make_model(args, parent=False):
     return MSR_RDN(args)

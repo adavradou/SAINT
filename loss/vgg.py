@@ -4,12 +4,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
-from torch.autograd import Variable
 
 class VGG(nn.Module):
     def __init__(self, conv_index, rgb_range=1):
         super(VGG, self).__init__()
-        vgg_features = models.vgg19(pretrained=True).features
+        vgg_features = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1).features
         modules = [m for m in vgg_features]
         if conv_index == '22':
             self.vgg = nn.Sequential(*modules[:8])

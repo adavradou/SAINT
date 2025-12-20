@@ -3,16 +3,14 @@ import math
 from decimal import Decimal
 
 import utility
-import scipy.misc
 import torch
-from torch.autograd import Variable
 from tqdm import tqdm
 import pickle
 import numpy as np
 import copy
 import imageio.core.util
 from medpy.io import load, save
-from skimage.measure import compare_psnr
+from skimage.metrics import peak_signal_noise_ratio
 
 def ignore_warnings(*args, **kwargs):
     pass
